@@ -2,22 +2,9 @@
   "version": 2,
   "builds": [
     {
-      "src": "api.py",
+      "src": "server.py",
       "use": "@vercel/python"
     }
   ],
-  "env": {
-    "MODEL_PATH": "model.joblib"
-  },
-  "headers": [
-    {
-      "source": "/api/predict",
-      "headers": [
-        {
-          "key": "Access-Control-Allow-Origin",
-          "value": "*"
-        }
-      ]
-    }
-  ]
+  "routes": [{ "src": "/api/.*", "dest": "/server.py" }]
 }
