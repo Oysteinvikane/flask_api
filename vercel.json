@@ -6,5 +6,5 @@
       "use": "@vercel/python"
     }
   ],
-  "routes": [{ "src": "/api/.*", "dest": "/server.py" }]
+  "routes": [{ "src": "/.*", "dest": "/server.py" }]
 }

@@ -12,7 +12,7 @@ app = Flask(__name__)
 # Define the feature names
 feature_names = ['Global_active_power', 'Global_reactive_power', 'Voltage', 'Global_intensity', 'Sub_metering_1', 'Sub_metering_2', 'Sub_metering_3']
 
-@app.route('/api/predict', methods=['POST'])
+@app.route('/predict', methods=['POST'])
 def predict():
     # Get the input data from the request
     input_data = request.json['input']
