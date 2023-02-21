@@ -1,18 +1,22 @@
+import joblib
 from flask import Flask, request, jsonify
 import pandas as pd
-import joblib
-import os
+from flask_cors import cross_origin
 
 # Load the trained machine learning model from the file
-model = joblib.load(os.path.join(os.path.dirname(__file__), 'model.joblib'))
+model = joblib.load('model.joblib')
 
 # Create a new Flask app
 app = Flask(__name__)
+
+# Enable CORS on the app
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 # Define the feature names
 feature_names = ['Global_active_power', 'Global_reactive_power', 'Voltage', 'Global_intensity', 'Sub_metering_1', 'Sub_metering_2', 'Sub_metering_3']
 
 @app.route('/predict', methods=['POST'])
+@cross_origin()
 def predict():
     # Get the input data from the request
     input_data = request.json['input']
@@ -29,7 +33,5 @@ def predict():
     # Return the prediction as a JSON response
     return jsonify({'prediction': prediction})
 
-# Run the Flask app on a production-ready server
 if __name__ == '__main__':
-    from waitress import serve
-    serve(app, host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
+    app.run()
