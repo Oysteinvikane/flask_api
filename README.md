@@ -14,7 +14,8 @@ The dataset i used was found at: https://archive.ics.uci.edu/ml/datasets/individ
 
 To use it locally just clone the repo, go into a terminal and go to root of the directory and pass:
 
-'python api.py'
+1. 'pip install -r requirements.txt' to get the packags you need.
+2. 'python api.py'
 
 It will then run locally and you will see a adress that you can send the post request to,
 most likely: http://127.0.0.1:5000
